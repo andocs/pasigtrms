@@ -1,0 +1,368 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+}
+
+::selection {
+  background: #1a75ff;
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  max-width: 410px;
+  max-height: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 130px;
+}
+
+.logo-container img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrapper .title-text {
+  display: flex;
+  width: 200%;
+}
+
+.wrapper .title {
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .slide-controls {
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+}
+
+.slide-controls .slide {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+
+.slide-controls label.signup {
+  color: #000;
+}
+
+.slide-controls .slider-tab {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 15px;
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#signup:checked ~ .slider-tab {
+  left: 50%;
+}
+
+#signup:checked ~ label.signup {
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+
+#signup:checked ~ label.login {
+  color: #000;
+}
+
+#login:checked ~ label.signup {
+  color: #000;
+}
+
+#login:checked ~ label.login {
+  cursor: default;
+  user-select: none;
+}
+
+.wrapper .form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.form-container .form-inner {
+  display: flex;
+  width: 200%;
+}
+
+.form-container .form-inner form {
+  width: 50%;
+  gap:20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-inner form .field:not(.btn) {
+  height: 45px;
+  width: 100%;
+}
+
+.form-inner form .field input {
+  height: 90%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+
+.form-inner form .field input:focus {
+  border-color: #1a75ff;
+}
+
+.form-inner form .field input::placeholder {
+  color: #999;
+  transition: all 0.3s ease;
+}
+
+form .field input:focus::placeholder {
+  color: #1a75ff;
+}
+
+.form-inner form .pass-link {
+  margin-top: 3px;
+}
+
+.form-inner form .signup-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-inner form .pass-link a,
+.form-inner form .signup-link a {
+  color: #1a75ff;
+  text-decoration: none;
+}
+
+.form-inner form .pass-link a:hover,
+.form-inner form .signup-link a:hover {
+  text-decoration: underline;
+}
+
+form .btn {
+  transition: all 0.3s ease;
+}
+
+.field {
+  padding: 0!important;
+  border-radius: 15px;
+  height: 60px;
+  width: 100%;  
+}
+
+button.submit {
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+  height: 60px;
+  width: 100%;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+button.submit:hover {
+  background: -webkit-linear-gradient(left, #004080, #0059b3, #0073e6);
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+form .btn:hover input[type="submit"]{
+  background: -webkit-linear-gradient(left, #004080, #0059b3, #0073e6)!important;
+  border-radius: 0px;
+}
+
+form .btn:hover{
+  transition: all 0.3s ease;
+  border-radius: 0px;
+}
+
+form .btn input[type="submit"] {
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6)!important;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  padding-left: 0;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.resend-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.resend-container a {
+  color: #1a75ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resend-container a:hover {
+  text-decoration: underline;
+}
+
+.credits {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+
+  a {
+    font-family: "Comic Sans MS", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(129, 129, 129);
+    text-decoration: none;
+  }
+}
+
+/* Clock styles */
+.clock {
+  text-align: center;
+  margin: 2px 0;
+  font-size: 1em;
+}
+#date {
+  font-size: 1.2em;
+  color: #fff;
+}
+#time {
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.profile-container {
+  justify-content: start;
+  padding: 40px 60px;
+  background-color: lightgray;
+  border-radius: 30px;
+  width: 80%;
+  height: max-content;
+  gap: 30px;
+}
+
+.profile-container img{
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.profile-container input {
+  padding: 0 15px;
+  border-radius: 15px;
+  height: 40px;
+  width: 100%;
+  border: none;
+}
+
+.profile-container > :nth-child(2) {
+  flex:1;
+}
+
+.profile-image {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  gap: 20px;
+}
+
+.profile-image > :first-child{
+  height: 100%;
+  width: 100%;
+}
+
+.profile-container button {
+  height: 40px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 100%;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-container button:hover {
+  background-color: white;
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-container .button-container {
+  align-self: flex-end;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.carousel {
+  height: 500px;
+}
+
+.carousel-inner,.carousel-item {
+  height: 100%;
+}
+
