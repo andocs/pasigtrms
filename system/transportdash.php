@@ -19,7 +19,7 @@ $routesCount = getRowCount($conn, 'route');
                         Transport Groups
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text" id="groupCount" style="cursor:pointer" data-toggle="modal" data-target="#dataModal"><?php echo $groupCount; ?></h2>
+                        <h2 class="card-text" id="groupCount" style="cursor:pointer"><?php echo $groupCount; ?></h2>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@ $routesCount = getRowCount($conn, 'route');
                         Transport Terminals
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text" id="terminalCount" style="cursor:pointer" data-toggle="modal" data-target="#dataModal"><?php echo $terminalCount; ?></h2>
+                        <h2 class="card-text" id="terminalCount" style="cursor:pointer"><?php echo $terminalCount; ?></h2>
                     </div>
                 </div>
             </div>
@@ -39,69 +39,25 @@ $routesCount = getRowCount($conn, 'route');
                         Transport Routes
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text" id="routesCount" style="cursor:pointer" data-toggle="modal" data-target="#dataModal"><?php echo $routesCount; ?></h2>
+                        <h2 class="card-text" id="routesCount" style="cursor:pointer"><?php echo $routesCount; ?></h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row my-4">
             <div class="col-md-12">
-                <div id="chartContainer">
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Table Modal -->
-    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="dataModalLabel">Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="modalBody">
-                    <!-- Table content will be loaded here -->
+                <div id="tableContainer">
+                    <!-- The first table will load here by default -->
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Initialize Chart.js
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Groups', 'Terminals', 'Routes'],
-                datasets: [{
-                    label: 'Number of Entries',
-                    data: [<?php echo $groupCount; ?>, <?php echo $terminalCount; ?>, <?php echo $routesCount; ?>],
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        // Load the first table by default
+        window.onload = function() {
+            loadTable('trans_group');
+        };
 
         document.getElementById('groupCount').addEventListener('click', function() {
             loadTable('trans_group');
@@ -120,7 +76,7 @@ $routesCount = getRowCount($conn, 'route');
             xhr.open('GET', 'load_table.php?type=' + type, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    document.getElementById('modalBody').innerHTML = xhr.responseText;
+                    document.getElementById('tableContainer').innerHTML = xhr.responseText;
                     new DataTable(`#dataTable_${type}`, {
                         layout: {
                             topStart: 'info',
