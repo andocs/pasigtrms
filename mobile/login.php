@@ -7,15 +7,15 @@ error_reporting(E_ALL);
 require 'db.php';
 require 'functions.php';
 
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *");
 
 $encodedData = file_get_contents('php://input');
 $decodedData = json_decode($encodedData, true);
 error_log("Encoded Data: " . $encodedData); // Log the received data
 $email = $decodedData['email'];
 $password = $decodedData['password'];
-$remember_me = $decodedData['remember_me'];
+$remember_me = $decodedData['remember_me'] || 0;
 
 $response = array();
 
@@ -61,7 +61,8 @@ if ($stmt->num_rows > 0) {
 } else {
     // Username not found
     $response['success'] = false;
-    $response['message'] = 'Incorrect username!';
+    $response['message'] = 'Incorrect email!';
+    $response['data'] = $decodedData;
 }
 
 echo json_encode($response);
